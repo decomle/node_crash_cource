@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const morgan = require('morgan');
 
 const app = express();
 
@@ -8,6 +9,12 @@ app.set('view engine', 'ejs')
 app.set('views', 'templates')
 
 app.listen(3000)
+
+// Static middleware
+app.use(express.static('static'))
+
+// LOG middleware
+app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
     const blogs = [
