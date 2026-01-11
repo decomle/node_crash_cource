@@ -1,0 +1,19 @@
+<html lang="en">
+    <%- include('./components/head') %>
+    <body>
+        <%- include('./components/nav') %>
+
+        <div class="blogs content">
+            <h2>All Blogs</h2>
+            <% typeof blogs !== 'undefined' && blogs && blogs.length > 0 && blogs.forEach(blog => { %>
+                <h3 class="title"><%= blog.title %></h3>
+                <p class="snippet"><%= blog.snippet %></p>
+            <% }) %>
+            <% if (typeof blogs === 'undefined' || !blogs || !blogs.length) { %>
+                <p>Nothings to display</p>
+            <% } %>
+        </div>
+
+        <%- include('./components/footer') %>
+    </body>
+</html>

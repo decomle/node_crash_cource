@@ -13,10 +13,10 @@ const server = http.createServer((req, res) => {
     
     switch(req.url) {
         case '/':
-            responseFromFile(res, 'views/index.html', onSuccess);
+            responseFromFile(res, '../views/index.html', onSuccess);
             break;
         case '/about':
-            responseFromFile(res, 'views/about.html', onSuccess);
+            responseFromFile(res, '../views/about.html', onSuccess);
             break;
         case '/about-us-test':
             res.statusCode = 301;
@@ -25,7 +25,7 @@ const server = http.createServer((req, res) => {
             break;
         default:
             res.statusCode = 404;
-            responseFromFile(res, 'views/404.html', function() {
+            responseFromFile(res, '../views/404.html', function() {
                 res.statusCode = 404;
             });
             break;

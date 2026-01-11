@@ -1,0 +1,26 @@
+<html lang="en">
+    <%- include('../components/head') %>
+    <body>
+        <%- include('../components/nav') %>
+
+        <div class="create-blog content">
+            <form action="/">
+                <label for="title">Blog Title:</label>
+                <input type="text" name="title" id="title" />
+
+                <label for="snippet">Blog Snippet</label>
+                <input type="text" name="snippet" id="snippet" />
+
+                <label for="body">Blog Body</label>
+                <input type="text" name="body" id="body" />
+
+                <label for="snippet">Blog Snippet</label>
+                <textarea name="body" id="body"></textarea>
+
+                <button>Submit</button>
+            </form>
+        </div>
+
+        <%- include('../components/footer') %>
+    </body>
+</html>
