@@ -1,0 +1,40 @@
+<html lang="en">
+    <%- include('../components/head') %>
+    <body>
+        <%- include('../components/nav') %>
+
+        <div class="details content">
+            <h2 class="title"><%= blog.title %></h2>
+            <p class="snippet"><%= blog.snippet %></p>
+            <div class="content">
+                <%= blog.body %>
+            </div>
+            <a href="#" class="delete" data-doc="<%= blog._id %>">Delete</a>
+        </div>
+
+        <%- include('../components/footer') %>
+
+        <script>
+            const trashcan = document.querySelector('a.delete');
+
+            trashcan.addEventListener('click', (e) => {
+                const endpoint = `/blogs/${trashcan.dataset.doc}`;
+
+                fetch(endpoint, {
+                    method: 'DELETE'
+                })
+                .then((response) => response.json())
+                .then((data) => {
+                    if(data.successed) {
+                        alert('Delete blog successfully')
+                        window.location = data.redirectUrl
+                    }
+
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+            })
+        </script>
+    </body>
+</html>

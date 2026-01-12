@@ -1,7 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const Blog = require('./src/models/blog');
+
+const blogRoutes = require('./src/routes/blog')
 
 const app = express();
 
@@ -27,8 +28,8 @@ app.get('/single-blog', (req, res) => {
 })
 
 // register view engine
-app.set('view engine', 'ejs')
-app.set('views', 'templates')
+app.set('view engine', 'ejs');
+app.set('views', 'templates');
 
 // Static middleware
 app.use(express.static('static'))
@@ -36,31 +37,22 @@ app.use(express.static('static'))
 // LOG middleware
 app.use(morgan('dev'));
 
+// url endcoded middleware
+app.use(express.urlencoded({extended: true}))
+
 app.get('/', (req, res) => {
     res.redirect('/blogs')
 });
 
-app.get('/blogs', (req, res) => {
-    Blog.find().sort({createAt: -1})
-        .then((results) => {
-            res.render('index', {title: 'All blogs', blogs:     results})
-        })
-        .catch((err) => {
-            console.log('ERROR', err)
-        })
-});
-
 app.get('/about', (req, res) => {
     res.render('about', {title: 'About'});
-})
+});
 
 app.get('/about-us', (req, res) => {
     res.redirect('/about')
-})
+});
 
-app.get('/blogs/create', (req, res) => {
-    res.render('blog/create', {title: 'Crate new blog'})
-})
+app.use('/blogs', blogRoutes);
 
 // 404
 app.use((req, res) => {
