@@ -7,7 +7,7 @@ const blogRoutes = require('./src/routes/blog')
 const app = express();
 
 // Connect to mongodb
-const dbURI = 'mongodb+srv://dat_relearn:Com3tom3now@decomle.cbo12nk.mongodb.net/decomle_relearn?appName=decomle';
+const dbURI = 'mongodb+srv://<username>:<password>@<mongo_atlas_user>.cbo12nk.mongodb.net/<db_name>?appName=decomle';
 mongoose.connect(dbURI)
     .then((result) => {
         console.log('connected to db');
